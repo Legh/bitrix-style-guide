@@ -43,7 +43,6 @@
     // bad
     $comments = CIBlockElement::GetList(Array(), Array("IBLOCK_ID" => 12));
     ```
-
     1. У каждой константы должно быть **говорящее** имя и комментарий.
 
     2. Файл `constants.php`:
