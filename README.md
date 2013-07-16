@@ -44,27 +44,27 @@
     $comments = CIBlockElement::GetList(Array(), Array("IBLOCK_ID" => 12));
     ```
     
-        1. У каждой константы должно быть **говорящее** имя и комментарий.
+    1. У каждой константы должно быть **говорящее** имя и комментарий.
 
-        2. Файл `constants.php`:
+    2. Файл `constants.php`:
 
-            ```php
-            // ИБ с комментариями пользователей
-            const COMMENTS_IBLOCK_ID = 12;
-            ```
+        ```php
+        // ИБ с комментариями пользователей
+        const COMMENTS_IBLOCK_ID = 12;
+        ```
         
-        4. Подключите этот файл в `init.php`
+    3. Подключите этот файл в `init.php`
         
-            ```php
-            //Константы проекта
-            include_once($_SERVER["DOCUMENT_ROOT"] . '/bitrix/php_interface/includes/constants.php');
-            ```
+        ```php
+        //Константы проекта
+        include_once($_SERVER["DOCUMENT_ROOT"] . '/bitrix/php_interface/includes/constants.php');
+        ```
         
-        5. Используйте константу
+    4. Используйте константу
         
-            ```php
-            $comments = CIBlockElement::GetList(Array(), Array("IBLOCK_ID" => COMMENTS_IBLOCK_ID));
-            ```
+        ```php
+        $comments = CIBlockElement::GetList(Array(), Array("IBLOCK_ID" => COMMENTS_IBLOCK_ID));
+        ```
 
 - Используйте [Bitrix IBlock Tools](https://github.com/xescoder/bitrix-iblock-tools), [обсуждение](http://habrahabr.ru/post/185080/).
 - При выборках данных (например, [GetList](http://dev.1c-bitrix.ru/api_help/iblock/classes/ciblockelement/getlist.php)) **обязательно** указывайте поля, которые нужны для дальнейших манипуляций, кроме случаев, когда нужны все поля:
