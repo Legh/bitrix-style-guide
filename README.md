@@ -44,23 +44,17 @@
     $comments = CIBlockElement::GetList(Array(), Array("IBLOCK_ID" => 12));
     ```
     1. У каждой константы должно быть **говорящее** имя и комментарий.
-
     2. Файл `constants.php`:
-
         ```php
         // ИБ с комментариями пользователей
         const COMMENTS_IBLOCK_ID = 12;
         ```
-
     3. Подключите этот файл в `init.php`
-
         ```php
         //Константы проекта
         include_once($_SERVER["DOCUMENT_ROOT"] . '/bitrix/php_interface/includes/constants.php');
         ```
-        
     4. Используйте константу
-
         ```php
         $comments = CIBlockElement::GetList(Array(), Array("IBLOCK_ID" => COMMENTS_IBLOCK_ID));
         ```
