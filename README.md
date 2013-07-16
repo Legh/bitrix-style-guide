@@ -1,10 +1,13 @@
 # Стандарты разработки на платформе 1С-Битрикс
 
-В этом руководстве описаны рекомендуемые техники при разработке на платформе [1С-Битрикс](http://www.1c-bitrix.ru/) / 1C-Bitrix (далее - Битрикс).
+В данном руководстве описаны рекомендуемые техники при разработке на платформе [1С-Битрикс](http://www.1c-bitrix.ru/) / 1C-Bitrix (далее - Битрикс).
 
-Код PHP должен написан в соответствии со стандартом [PSR-1](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md).
 
-Стиль написания кода должен соответствовать стандарту [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md).
+## PHP
+
+* Код PHP должен написан в соответствии со стандартом [PSR-1](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md).
+
+* Стиль написания кода должен соответствовать стандарту [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md).
 
 ## Оформление исходного кода
 
@@ -32,30 +35,34 @@
     include_once($_SERVER["DOCUMENT_ROOT"] . '/bitrix/php_interface/includes/some_class.php');
     ```
 - Не используйте **цифровые значения** в GetList, GetByID и схожих методах, которые принимают различные ID. Создайте файл со всеми необходимыми константами и используйте их имена. 
-- У каждой константы должно быть **говорящее** имя и комментарий.
 
     ```php
     // bad
     $comments = CIBlockElement::GetList(Array(), Array("IBLOCK_ID" => 12));
     ```
     
-	  `// good`
-	
-    `constants.php` 
+    1. У каждой константы должно быть **говорящее** имя и комментарий.
+
+    2. Файл `constants.php`:
+
+        ```php
+        // ИБ с комментариями пользователей
+        const COMMENTS_IBLOCK_ID = 12;
+        ```
     
-    ```php
-    // ИБ с комментариями пользователей
-    const COMMENTS_IBLOCK_ID = 12;
-    ```
-    Подключите этот файл в init.php
-    ```php
-    //Константы проекта
-    include_once($_SERVER["DOCUMENT_ROOT"] . '/bitrix/php_interface/includes/constants.php');
-    ```
-    Используйте константу
-    ```php
-    $comments = CIBlockElement::GetList(Array(), Array("IBLOCK_ID" => COMMENTS_IBLOCK_ID));
-    ```
+    4. Подключите этот файл в `init.php`
+    
+        ```php
+        //Константы проекта
+        include_once($_SERVER["DOCUMENT_ROOT"] . '/bitrix/php_interface/includes/constants.php');
+        ```
+    
+    5. Используйте константу
+    
+        ```php
+        $comments = CIBlockElement::GetList(Array(), Array("IBLOCK_ID" => COMMENTS_IBLOCK_ID));
+        ```
+
 - Используйте [Bitrix IBlock Tools](https://github.com/xescoder/bitrix-iblock-tools), [обсуждение](http://habrahabr.ru/post/185080/).
 - При выборках данных (например, [GetList](http://dev.1c-bitrix.ru/api_help/iblock/classes/ciblockelement/getlist.php)) **обязательно** указывайте поля, которые нужны для дальнейших манипуляций, кроме случаев, когда нужны все поля:
 
@@ -150,13 +157,13 @@
 ### Структура шаблона
 
 ```bash
-bitrix/templates/<название_шаблона>/
+/bitrix/templates/<название_шаблона>/
 ├── header.php
 ├── footer.php
 ├── styles.css
 │
 ├── components/
-├── assets
+├── assets/
 │   ├── js/
 │   ├── css/
 │   └── bootstrap/
