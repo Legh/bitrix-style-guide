@@ -37,7 +37,7 @@
     // SomeClass
     include_once($_SERVER["DOCUMENT_ROOT"] . '/bitrix/php_interface/includes/some_class.php');
     ```
-- Не используйте **цифровые значения** в GetList, GetByID и схожих методах, которые принимают различные ID. Создайте файл со всеми необходимыми константами и используйте их имена. 
+* Не используйте **цифровые значения** в GetList, GetByID и схожих методах, которые принимают различные ID. Создайте файл со всеми необходимыми константами и используйте их имена. 
 
     ```php
     // bad
@@ -54,14 +54,14 @@
         ```
 
     3. Подключите этот файл в `init.php`
-        
+
         ```php
         //Константы проекта
         include_once($_SERVER["DOCUMENT_ROOT"] . '/bitrix/php_interface/includes/constants.php');
         ```
         
     4. Используйте константу
-        
+
         ```php
         $comments = CIBlockElement::GetList(Array(), Array("IBLOCK_ID" => COMMENTS_IBLOCK_ID));
         ```
