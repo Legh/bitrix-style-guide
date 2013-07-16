@@ -96,24 +96,24 @@
 
 * [api_help](http://dev.1c-bitrix.ru/api_help/main/functions/debug/index.php)
 
-    1. Определите константу `LOG_FILENAME` в файле `/bitrix/php_interface/dbconn.php`, задавая путь к лог-файлу за пределами `DOCUMENT_ROOT`.
+1. Определите константу `LOG_FILENAME` в файле `/bitrix/php_interface/dbconn.php`, задавая путь к лог-файлу за пределами `DOCUMENT_ROOT`.
 
-        ```php
-        // определяем константу LOG_FILENAME, в которой зададим путь к лог-файлу
-        define("LOG_FILENAME", $_SERVER["DOCUMENT_ROOT"]."/../log.txt");
-        ```
+    ```php
+    // определяем константу LOG_FILENAME, в которой зададим путь к лог-файлу
+    define("LOG_FILENAME", $_SERVER["DOCUMENT_ROOT"]."/../log.txt");
+    ```
 
-    2. Отправьте сообщение в лог
+2. Отправьте сообщение в лог
     
-        ```php
-        AddMessage2Log("Произвольный текст сообщения", "module_id");
-        ```
+    ```php
+    AddMessage2Log("Произвольный текст сообщения", "module_id");
+    ```
 
-        Пример:
+    Пример:
 
-        ```php
-        AddMessage2Log( print_r($arResult, true) );
-        ```
+    ```php
+    AddMessage2Log( print_r($arResult, true) );
+    ```
 
 ### SQL
 
