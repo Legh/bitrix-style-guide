@@ -82,6 +82,47 @@
     <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();?>
     ```
 
+## Отладка
+
+**Важно**
+
+  *Логирование замедляет работу системы и может являться брешью в безопасности*
+
+### Вывод на экран
+
+* Воспользуйтесь модулем [Bitrix Debug](http://marketplace.1c-bitrix.ru/solutions/scrollup.bxd/), [GitHub](https://github.com/ancorp/bitrix-debug).
+
+### Вывод в файл
+
+* [api_help](http://dev.1c-bitrix.ru/api_help/main/functions/debug/index.php)
+
+    1. Определите константу `LOG_FILENAME` в файле `/bitrix/php_interface/dbconn.php`, задавая путь к лог-файлу за пределами `DOCUMENT_ROOT`.
+
+        ```php
+        // определяем константу LOG_FILENAME, в которой зададим путь к лог-файлу
+        define("LOG_FILENAME", $_SERVER["DOCUMENT_ROOT"]."/../log.txt");
+        ```
+
+    2. Отправьте сообщение в лог
+    
+        ```php
+        AddMessage2Log("Произвольный текст сообщения", "module_id");
+        ```
+
+        Пример:
+
+        ```php
+        AddMessage2Log( print_r($arResult, true) );
+        ```
+
+### SQL
+
+* Определите переменную `DBDebugToFile` для логирования всех SQL запросов.
+
+    ```php
+    $DBDebugToFile = true;
+    ```
+
 ## Работа с компонентами
 
 - Шаблонам компонентов давайте осмысленные названия и в каждом проекте придерживайтесь общего стиля. Например, `Раздел/страница_сайта.Название.Тип`
