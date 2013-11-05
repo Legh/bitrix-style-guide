@@ -159,6 +159,7 @@
     - Chrome [Clear Cache](https://chrome.google.com/webstore/detail/clear-cache/cppjkneekbjaeellbfkmgnhonkkjfpdn)
 
 - НЕЛЬЗЯ вставлять код вызова компонента внутрь файла `template.php` другого компонента.
+    *Это противоречит идеологии разделения даннах и представления (см. выше) и влечет двойное кэширование.*
 
 ## Работа с шаблонами
 
