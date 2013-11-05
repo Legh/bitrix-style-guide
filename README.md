@@ -149,6 +149,13 @@
 
     - Во время разработки полностью отключайте кэширование - это съэкономит вам много времени. 
 
+- Подключайте js и css файлы только через предназначенный для этого API:
+    - [CMain::AddHeadScript](http://dev.1c-bitrix.ru/api_help/main/reference/cmain/addheadscript.php)
+    - [CMain::SetAdditionalCSS](http://dev.1c-bitrix.ru/api_help/main/reference/cmain/setadditionalcss.php)
+
+- Если файлы ресурсов подключены неправильно, высока вероятность, что браузеры начнут их активно кэшировать. Не забывайте про специализированные расширеня для браузеров:
+    - Chrome [Clear Cache](https://chrome.google.com/webstore/detail/clear-cache/cppjkneekbjaeellbfkmgnhonkkjfpdn)
+
 ## Работа с шаблонами
 
 - РЕКОМЕНДУЕТСЯ использовать минимальное количество шаблонов.
