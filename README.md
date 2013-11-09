@@ -12,7 +12,7 @@
 
 * Стиль написания кода должен соответствовать стандарту [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md).
 
-* В конечном итоге придерживаемся [инструкции](http://dev.1c-bitrix.ru/docs/php_recommendation.php) от разработчиков системы.
+* В конечном итоге придерживаемся [правил форматирования](https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=43&LESSON_ID=5759) (ядро D7) от разработчиков системы.
 
 ## Оформление исходного кода
 
