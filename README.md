@@ -186,7 +186,7 @@
 Пример:
 
 ```bash
-/bitrix/templates/<название_шаблона>/
+/local/templates/<название_шаблона>/
 ├── header.php
 ├── footer.php
 ├── styles.css
