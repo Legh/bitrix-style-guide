@@ -8,7 +8,7 @@
 
 ## PHP
 
-* Код PHP должен написан в соответствии со стандартом [PSR-1](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md).
+* Код PHP должен быть написан в соответствии со стандартом [PSR-1](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md).
 
 * Стиль написания кода должен соответствовать стандарту [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md).
 
@@ -33,11 +33,25 @@
 ## Общие положения
 
 - При добавлении кода в файл `init.php` группируйте код в классы и выносите их в отдельные файлы.
+
+- При подключении файлов используйте только функции Битрикса. Цитата:
+> Поддержка Bitrix Framework русских (и прочих) символов в названиях публичных файлов накладывает определённые ограничения на работу: 
+> недопустимы прямые вызовы
+> 
+> - к файлам, имена которых выбираются пользователями,
+> - к папкам, имена которых выбираются пользователями,
+> - к файлам и папкам, которые могут лежать в папках, имена которых выбираются пользователями.
+> Недопустимы вызовы любых прямых методов работы с файловой системой: include, require, fopen, filesize, unlink, file_exists и т.д. [http://dev.1c-bitrix.ru/api_help/main/reference/cbxvirtualio/index.php](Документация Битрикс)
  
     `init.php`
     ```php
+    // bad
     // SomeClass
-    include_once($_SERVER["DOCUMENT_ROOT"] . '/bitrix/php_interface/includes/some_class.php');
+    include('../some_file.php');
+    
+    //good
+    // SomeClass
+    $APPLICATION->GetFileContent('../some_file.php');
     ```
 * Не используйте **цифровые значения** в GetList, GetByID и схожих методах, которые принимают различные ID. Создайте файл со всеми необходимыми константами и используйте их имена. 
 
@@ -56,7 +70,7 @@
 
         ```php
         //Константы проекта
-        include_once($_SERVER["DOCUMENT_ROOT"] . '/bitrix/php_interface/includes/constants.php');
+        $APPLICATION->GetFileContent($_SERVER["DOCUMENT_ROOT"] . '/bitrix/php_interface/includes/constants.php');
         ```
     4. Используйте константу
 
