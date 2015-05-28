@@ -23,7 +23,7 @@
 ##Установки PHP (минимальные)
 
 ```ini
-safe mode Off
+safe mode = Off
 short_open_tag = On
 realpath_cache_size = 4096k ; и больше
 memory_limit = 128M
