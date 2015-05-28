@@ -22,25 +22,28 @@
 
 ##Установки PHP (минимальные)
 
+```ini
 safe mode Off
-short_open_tag On
-realpath_cache_size 4096k и больше
-memory_limit 128M
-default_charset UTF-8
-mbstring.func_overload 2
-mbstring.internal_encoding	UTF-8
+short_open_tag = On
+realpath_cache_size = 4096k ; и больше
+memory_limit = 128M
+default_charset = UTF-8
+mbstring.func_overload = 2
+mbstring.internal_encoding = UTF-8
+```
 
 ###при использовании opcache
 
-opcache.validate_timestamps	1
-opcache.revalidate_freq	0
+```ini
+opcache.validate_timestamps =	1
+opcache.revalidate_freq =	0
+```
 
 ##Установки PHP (рекомендованные)
 
 - доступная память (memory_limit)
   - для визитки, каталога - не менее 128 Mb
   - для магазина - не менее 256 Mb
-
 - позволить загрузку файлов (file_uploads)
 - показывать ошибки (display_errors)
 - квотирование Sybase (magic_quotes_sybase)
@@ -48,7 +51,7 @@ opcache.revalidate_freq	0
 
 ##Требуемые модули PHP
 
-- Multibyte String
+- Multibyte String (mbstring)
 - MySQL (mysql/mysqli)
 - поддержка регулярных выражений (Perl-Compatible)
 
