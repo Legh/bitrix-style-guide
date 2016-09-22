@@ -41,7 +41,7 @@
 > - к файлам, имена которых выбираются пользователями,
 > - к папкам, имена которых выбираются пользователями,
 > - к файлам и папкам, которые могут лежать в папках, имена которых выбираются пользователями.
-> Недопустимы вызовы любых прямых методов работы с файловой системой: include, require, fopen, filesize, unlink, file_exists и т.д. [http://dev.1c-bitrix.ru/api_help/main/reference/cbxvirtualio/index.php](Документация Битрикс)
+> Недопустимы вызовы любых прямых методов работы с файловой системой: include, require, fopen, filesize, unlink, file_exists и т.д. [Документация Битрикс CBXVirtualIo](http://dev.1c-bitrix.ru/api_help/main/reference/cbxvirtualio/index.php)
  
     `init.php`
     ```php
@@ -57,7 +57,7 @@
 
     ```php
     // bad
-    $comments = CIBlockElement::GetList(Array(), Array("IBLOCK_ID" => 12));
+    $comments = CIBlockElement::GetList([], ["IBLOCK_ID" => 12]);
     ```
     1. У каждой константы должно быть **говорящее** имя и комментарий.
     2. Файл `constants.php`:
@@ -75,7 +75,7 @@
     4. Используйте константу
 
         ```php
-        $comments = CIBlockElement::GetList(Array(), Array("IBLOCK_ID" => COMMENTS_IBLOCK_ID));
+        $comments = CIBlockElement::GetList([], ["IBLOCK_ID" => COMMENTS_IBLOCK_ID]);
         ```
 
 - Используйте [Bitrix IBlock Tools](https://github.com/xescoder/bitrix-iblock-tools), [обсуждение](http://habrahabr.ru/post/185080/).
@@ -83,9 +83,9 @@
 
     ```php
     // good - Обязательно указывайте поля для выборки
-    $arSelect = Array("ID", "NAME", "DATE_ACTIVE_FROM");
+    $arSelect = ["ID", "IBLOCK_ID", "NAME", "DATE_ACTIVE_FROM"];
     ...
-    $res = CIBlockElement::GetList(Array(), $arFilter, false, Array(), $arSelect);
+    $res = CIBlockElement::GetList([], $arFilter, false, [], $arSelect);
     ```
 - При необходимости выбрать несколько элементов по ID, **обязательно** используйте GetList вместо GetByID:
 
@@ -95,7 +95,9 @@
     $element2 = CIBlockElement::GetByID(2);
 
     // good
-    $elements = CIBlockElement::GetList(Array(), Array(1, 2));
+    $elements = CIBlockElement::GetList([], [
+        "ID" => [1, 2]
+        ]);
     ```
 - Не используйте **прямые запросы к базе** данных, вся работа только через [API](http://dev.1c-bitrix.ru/api_help/).
 - Если к файлу **не предусмотрен** прямой доступ через WEB, в первой строке файла добавьте:
@@ -126,7 +128,7 @@
     ```
 
 2. Отправьте сообщение в лог
-    
+
     ```php
     AddMessage2Log("Произвольный текст сообщения", "module_id");
     ```
@@ -147,7 +149,7 @@
 
 ## Работа с компонентами
 
-- Шаблонам компонентов давайте осмысленные названия и в каждом проекте придерживайтесь общего стиля. Например, `Раздел/страница_сайта.Название.Тип`
+- Шаблонам компонентов давайте осмысленные названия и в каждом проекте придерживайтесь общего стиля. Например, `раздел/страница_сайта.Название.Тип`
 
     Примеры:
 
@@ -155,8 +157,7 @@
     - `profile.orders.list`
     - `cart.products.additional`
 
-- Стандартные компоненты **не модифицируются**. Если возникнет такая необходимость — создайте копию компонента в своем пространстве имен в каталоге `/bitrix/components/`.
-- РЕКОММЕНДУЕТСЯ все шаблоны компонентов сохранять в шаблоне `.default` в каталоге `/bitrix/templates/.default/`.
+- Стандартные компоненты **не модифицируются**. Если возникнет такая необходимость — создайте копию компонента в своем пространстве имен в каталоге `/дщсфд/components/`.
 - НЕ РЕКОМЕНДУЕТСЯ делать любые манипуляции с данными в файле `template.php`. При необходимости правки логики стандартных компонентов, но недостаточной для того, что делать свой используются файлы [result_modifier.php](http://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=43&LESSON_ID=2830&LESSON_PATH=3913.4565.2830) и [component_epilog.php](http://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=43&LESSON_ID=2975&LESSON_PATH=3913.4565.2975)
 - РЕКОМЕНДУЕТСЯ использовать файлы `style.css` и `script.js` в шаблонах только если они переопределяют стандартное поведение схожих элементов. РЕКОМЕНДУЕТСЯ оставить комментарий об этой особенности.
 
@@ -166,7 +167,7 @@
   
     *Исключение:*
 
-    - Во время разработки полностью отключайте кэширование - это съэкономит вам много времени. 
+    - Во время разработки полностью отключайте кэширование - это сэкономить вам много времени. 
 
 - Подключайте js и css файлы только через предназначенный для этого API:
     - [CMain::AddHeadScript](http://dev.1c-bitrix.ru/api_help/main/reference/cmain/addheadscript.php)
@@ -211,8 +212,10 @@
 │
 ├── assets/
 │   ├── js/
+|   |   ├── lib/
+|   |   |   ├── jquery.min.js
+│   |   |
 |   |   ├── custom.js
-|   |   ├── jquery.dataAttributeEvents.js
 │   |
 │   ├── css/
 |   |   ├── ..
