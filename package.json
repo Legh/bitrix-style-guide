@@ -1,0 +1,9 @@
+{
+  "name": "bitrix-style-guide",
+  "version": "1.0.0",
+  "description": "В данном руководстве описаны рекомендуемые техники при разработке на платформе 1С-Битрикс",
+  "main": "readme.md",
+  "repository": "git@github.com:ancorp/BitrixCM.git",
+  "author": "ancorp",
+  "license": "MIT"
+}
